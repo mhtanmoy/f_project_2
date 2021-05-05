@@ -18,3 +18,14 @@ class DriverList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save()
+
+
+class CustomerUserList(generics.ListCreateAPIView):
+    queryset=CustomerUser.objects.all()
+    serializer_class=CustomerUserSerializer
+
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save()
+
