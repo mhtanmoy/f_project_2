@@ -13,4 +13,21 @@ class CustomerUserSerializer(serializers.ModelSerializer):
         model=CustomerUser
         fields=['id','user_name','mobile_no','wallet_amount','email_id','User_Id']
 
+class VehicleSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model=Vehicle
+        fields=['id','brand','model','fare_per_km','air_conditioned','luggage_capacity','number_of_seat','front_image','side_image','back_image']
+                                                                
+
+class BookingDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=BookingDetails
+        fields=['id','trip_type','pickup_point','Pickup_date_time','drop_point','drop_date','selected_car','name ','mobile_no','user_id','approx_km_travelling','coupon','coupon_discount_amount','fare','advance_payment_medium','cash_drop_point','transaction_no']                                                                                                                            
+
+class BookingHistorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=BookingHistory
+        fields=['booking_id','booking_Date','trip_type','pickup_date_time','drop_date','km_travelled','pickup_point','drop_point','booked_by_user','assigned_driver','booked_vehicle']

@@ -29,3 +29,30 @@ class CustomerUserList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
 
+class VehicleList(generics.ListCreateAPIView):
+    queryset=Vehicle.objects.all()
+    serializer_class=VehicleSerializer
+
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+class BookingDetailsList(generics.ListCreateAPIView):
+    queryset=BookingDetails.objects.all()
+    serializer_class=BookingDetailsSerializer
+
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class BookingHistoryList(generics.ListCreateAPIView):
+    queryset=BookingHistory.objects.all()
+    serializer_class=BookingHistorySerializer
+
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save()
