@@ -30,6 +30,6 @@ class BookingHistorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model=BookingHistory
-        fields=['booking_history_id','booking_Date','trip_type','pickup_date_time','drop_date','km_travelled','pickup_point','drop_point','booked_by_user','assigned_driver','booked_vehicle']
+        fields=['booking_history_id','trip_type','booking_Date','pickup_date_time','drop_date','km_travelled','pickup_point','drop_point','booked_by_user','assigned_driver','booked_vehicle']
 
 
