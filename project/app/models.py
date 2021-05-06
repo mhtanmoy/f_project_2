@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Driver(models.Model):
+    driver_id = models.AutoField(primary_key=True)
     driver_name=models.CharField(max_length=150)
     mobile_no=models.CharField(max_length=20, null=True)
     pin_code=models.CharField(max_length=10, null=True)
@@ -23,17 +25,18 @@ class Driver(models.Model):
         return self.driver_name
 
 class CustomerUser(models.Model):
-    user_name=models.CharField(max_length=150, null=True)
-    mobile_no=models.CharField(max_length=25, null=True)
-    wallet_amount=models.CharField(max_length=10, null=True)
-    email_id=models.EmailField(max_length=60, null=True, blank=True)
-    User_Id=models.CharField(max_length=50, unique=True)
+    user_name = models.CharField(max_length=150, null=True)
+    mobile_no = models.CharField(max_length=25, null=True)
+    wallet_amount = models.CharField(max_length=10, null=True)
+    email_id = models.EmailField(max_length=60, null=True, blank=True)
+    User_Id = models.AutoField(primary_key=True)
 
     def __str__(self):
         return self.user_name
 
 
 class Vehicle(models.Model):
+    vehicle_id = models.AutoField(primary_key=True)
     brand=models.CharField(max_length=150)
     model=models.CharField(max_length=150)
     fare_per_km=models.IntegerField()
@@ -45,10 +48,10 @@ class Vehicle(models.Model):
     back_image=models.ImageField(upload_to="Vehicles",null=True, blank=True)
 
     def __str__(self):
-        return self.brand
+        return self.vehicle_id
 
 class BookingHistory(models.Model):
-    booking_id=models.AutoField()
+    booking_history_id = models.AutoField(primary_key=True)
     booking_Date=models.CharField(max_length=50, unique=True)
     choice=(('Round trip','Round trip'),('One way','One way'),('Local','Local'))
     trip_type=models.CharField(max_length=50, choices=choice, default='', null=True) 
@@ -62,7 +65,7 @@ class BookingHistory(models.Model):
     booked_vehicle=models.CharField(max_length=150)
 
     def __str__(self):
-        return self.booking_id
+        return self.booking_history_id
 
 class Admin(models.Model):
     name=models.CharField(max_length=50)
@@ -75,6 +78,7 @@ class Admin(models.Model):
 
 
 class BookingDetails(models.Model):
+    booking_id = models.AutoField(primary_key=True)
     choice=(('Round trip','Round trip'),('One way','One way'),('Local','Local'))
     trip_type=models.CharField(max_length=50, choices=choice, default='', null=True) 
     pickup_point=models.CharField(max_length=150)
@@ -82,16 +86,16 @@ class BookingDetails(models.Model):
     drop_point=models.CharField(max_length=150)
     drop_date=models.CharField(max_length=70)
     selected_car=models.CharField(max_length=150)
-    name =models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    user_id = models.CharField(max_length=100)
     mobile_no=models.CharField(max_length=25)
-    user_id=models.AutoField()
     approx_km_travelling=models.CharField(max_length=50)
     coupon=models.CharField(max_length=150)
     coupon_discount_amount =models.CharField(max_length=50)
     fare=models.CharField(max_length=50)
     advance_payment_medium=models.CharField(max_length=50)
-    cash_drop_point=models.CharField(max_length=150,null=True,black=True) 
-    transaction_no=models.CharField(max_length=100,null=True,black=True) 
+    cash_drop_point=models.CharField(max_length=150,null=True,blank=True) 
+    transaction_no=models.CharField(max_length=100,null=True,blank=True) 
 
     def __str__(self):
-        return self.trip_type 
+        return self.booking_id
