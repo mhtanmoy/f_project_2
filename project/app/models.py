@@ -48,7 +48,7 @@ class Vehicle(models.Model):
     back_image=models.ImageField(upload_to="Vehicles",null=True, blank=True)
 
     def __str__(self):
-        return self.vehicle_id
+        return self.brand
 
 class BookingHistory(models.Model):
     booking_history_id = models.AutoField(primary_key=True)
