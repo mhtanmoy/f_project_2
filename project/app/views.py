@@ -134,3 +134,15 @@ def createdriver(request):
             return redirect('driver')
     return render(request,'app/createdriver.html', {'form':form})
 
+
+@login_required
+@manager_only
+def createvehicle(request):
+    form = VehicleFrom()
+    if request.method == 'POST':
+        form = VehicleFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('vehicle')
+    return render(request,'app/createvehicle.html', {'form':form})
+

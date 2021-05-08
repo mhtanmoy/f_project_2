@@ -30,3 +30,10 @@ class CustomerUserFrom(ModelForm):
 		fields = '__all__'
 		exclude = ['User_Id']
 
+
+class VehicleFrom(ModelForm):
+	class Meta:
+		model = Vehicle
+		fields = '__all__'
+		exclude = ['vehicle_id']
+
