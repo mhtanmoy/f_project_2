@@ -43,6 +43,7 @@ def customeruser(request):
     return render(request,'app/customeruser.html' , {'customerusers':customerusers})
 
 @login_required
+@manager_only
 def alluser(request):
     admin = Admin.objects.all()
     return render(request,'app/alluser.html',{'admin':admin})
