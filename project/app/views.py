@@ -115,3 +115,22 @@ def edituser(request, pk):
             return redirect('customeruser')
     return render(request,'app/edituser.html', {'form':form})
 
+@login_required
+@manager_only
+def deletedriver(request, pk):
+	driver = Driver.objects.get(driver_id=pk)
+	if request.method == "POST":
+		driver.delete()
+		return redirect('driver')
+
+@login_required
+@manager_only
+def createdriver(request):
+    form = DriverFrom()
+    if request.method == 'POST':
+        form = DriverFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('driver')
+    return render(request,'app/createdriver.html', {'form':form})
+

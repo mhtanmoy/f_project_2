@@ -4,6 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('driver', views.driver, name='driver'),
+    path('createdriver', views.createdriver, name='createdriver'),
+    path('driver/<int:pk>/delete', views.deletedriver, name='deletedriver'),
     path('editdriver/<int:pk>', views.editdriver, name='editdriver'),
     path('edituser/<int:pk>', views.edituser, name='edituser'),
     path('vehicle', views.vehicle),
