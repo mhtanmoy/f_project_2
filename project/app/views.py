@@ -135,14 +135,18 @@ def createdriver(request):
     return render(request,'app/createdriver.html', {'form':form})
 
 
+
 @login_required
 @manager_only
 def createvehicle(request):
-    form = VehicleFrom()
-    if request.method == 'POST':
-        form = VehicleFrom(request.POST)
-        if form.is_valid():
-            form.save()
+    if request.method == 'GET':
+        return render(request, 'app/createvehicle.html', {'form':VehicleFrom()})
+    else:
+        try:
+            vehicle = VehicleFrom(data=request.POST,files=request.FILES)
+            vehicles = vehicle.save(commit=False)
+            vehicles.user = request.user
+            vehicles.save()
             return redirect('vehicle')
-    return render(request,'app/createvehicle.html', {'form':form})
-
+        except ValueError:
+            return render(request, 'app/createvehicle.html', {'form':VehicleFrom()})
