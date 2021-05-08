@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'adminlte3',
+    'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,6 +128,7 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
 
+STATIC_ROOT = "/static"
 
 STATICFILES_DIRS=[
     BASE_DIR/ 'static'
