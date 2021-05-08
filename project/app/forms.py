@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Admin
+from .models import *
 
 
 class CreateUserForm(UserCreationForm):
@@ -17,4 +17,16 @@ class AdminForm(ModelForm):
 		model = Admin
 		fields = '__all__'
 		exclude = ['admin']
+
+class DriverFrom(ModelForm):
+	class Meta:
+		model = Driver
+		fields = '__all__'
+		exclude = ['driver_id']
+
+class CustomerUserFrom(ModelForm):
+	class Meta:
+		model = CustomerUser
+		fields = '__all__'
+		exclude = ['User_Id']
 
