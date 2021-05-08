@@ -42,6 +42,12 @@ def customeruser(request):
     customerusers=CustomerUser.objects.all()
     return render(request,'app/customeruser.html' , {'customerusers':customerusers})
 
+@login_required
+def alluser(request):
+    admin = Admin.objects.all()
+    return render(request,'app/alluser.html',{'admin':admin})
+
+
 @unauthenticated_user
 def loginuser(request):
     if request.method=='GET':
@@ -82,4 +88,3 @@ def signupuser(request):
 			return redirect('home')			
 	return render(request, 'app/signupuser.html',{'form':form} )
 
-    
