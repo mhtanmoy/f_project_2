@@ -17,5 +17,11 @@ urlpatterns = [
     path('signup', views.signupuser, name='signupuser'),
     path('logout', views.logoutuser, name='logoutuser'),
     path('login', views.loginuser, name='loginuser'),
+    path('notification', views.notification, name='notification'),
+    path('createnotification', views.createnotification, name='createnotification'), 
+    path('notification/<int:pk>/delete', views.deletenotification, name='deletenotification'),  
+    path('coupons', views.coupons, name='coupons'),
+    path('createcoupons', views.createcoupons, name='createcoupons'), 
+    path('coupons/<int:pk>/delete', views.deletecoupons, name='deletecoupons'),  
 
 ]
