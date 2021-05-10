@@ -184,17 +184,19 @@ def createnotification(request):
             return redirect('notification')
     return render(request,'app/createnotification.html', {'form':form})
 
-
+@login_required
+@manager_only
 def deletenotification(request,pk):
     obj=get_object_or_404(Notification,id=pk)
     if request.method =='GET':
         obj.delete()
         return redirect('notification')
 
-
+@login_required
+@manager_only
 def coupons(request):
-    noti=Coupons.objects.all()
-    return render(request,'app/coupons.html', {'noti':noti})
+    coup=Coupons.objects.all()
+    return render(request,'app/coupons.html', {'coup':coup})
 
 
 @login_required
