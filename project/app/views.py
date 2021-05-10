@@ -208,9 +208,43 @@ def createcoupons(request):
             return redirect('coupons')
     return render(request,'app/createcoupons.html', {'form':form})
 
-
+@login_required
+@manager_only
 def deletecoupons(request,pk):
     obj=get_object_or_404(Coupons,id=pk)
     if request.method =='GET':
         obj.delete()
         return redirect('coupons')
+
+@login_required
+@manager_only
+def deletebookinghistory(request,pk):
+    obj=get_object_or_404(BookingHistory,booking_history_id=pk)
+    if request.method =='GET':
+        obj.delete()
+        return redirect('bookinghistory')
+
+@login_required
+@manager_only
+def deletevehicle(request,pk):
+    obj=get_object_or_404(Vehicle,vehicle_id=pk)
+    if request.method =='GET':
+        obj.delete()
+        return redirect('vehicle')
+
+@login_required
+@manager_only
+def deletebookingdetails(request,pk):
+    obj=get_object_or_404(BookingDetails,booking_id=pk)
+    if request.method =='GET':
+        obj.delete()
+        return redirect('bookingdetails')
+
+@login_required
+@manager_only
+def deletecustomer(request,pk):
+    obj=get_object_or_404(CustomerUser,User_Id=pk)
+    if request.method =='GET':
+        obj.delete()
+        return redirect('customeruser')
+

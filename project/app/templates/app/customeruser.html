@@ -27,6 +27,7 @@
                       <th>Wallet amount</th>
                       <th>Email</th>
                       <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                 </div>
@@ -39,6 +40,7 @@
               <td>{{ i.wallet_amount }}</td>  
               <td>{{ i.email_id }}</td>
               <td><a href="{% url 'edituser' i.User_Id %}">edit</td>
+                <td> <a href="{% url 'deletecustomer' i.User_Id %}">delete</a></td>
 
             </tr>
               {% endfor %}

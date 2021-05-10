@@ -32,6 +32,7 @@
                       <th>Drop point</th>
                       <th>Assigned Driver</th>
                       <th>Booked vehicle</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                 </div>
@@ -49,6 +50,7 @@
               <td>{{ i.drop_point }}</td> 
               <td>{{ i.assigned_driver }}</td> 
               <td>{{ i.booked_vehicle }}</td> 
+              <td> <a href="{% url 'deletebookinghistory' i.booking_history_id %}">delete</a></td>
             </tr>
               {% endfor %}
 

@@ -3,6 +3,7 @@
 
 {% for i in bookingdetailss %}
 
+<a href="{% url 'deletebookingdetails' i.booking_id %}">delete</a>
 <h4>id: {{ i.booking_id }}</h4>
 <h3>trip type: {{ i.trip_type }}</h3> 
 <h3>pickup point: {{ i.pickup_point }}</h3> 
