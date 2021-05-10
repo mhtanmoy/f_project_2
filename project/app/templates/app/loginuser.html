@@ -27,6 +27,7 @@
           </form>
           <form class="login-form" method="POST">
             {% csrf_token %}
+            {{ error }} <br><br>
             {{ form.username|add_class:'input'|attr:"placeholder: Username" }}
             {{ form.password|add_class:'input'|attr:"placeholder: password" }}
             <button>login</button>
