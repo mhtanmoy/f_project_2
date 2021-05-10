@@ -13,7 +13,7 @@ from .decorators import *
 @unauthenticated_user
 def loginuser(request):
     if request.method=='GET':
-        return render(request,'app/loginuser.html', {'form':AuthenticationForm()})
+        return render(request,'app/loginuser.html', {'form':AuthenticationForm(),'form2':CreateUserForm()})
     else:
         user= authenticate(request,username=request.POST['username'],password=request.POST['password'])
         if user is None:
