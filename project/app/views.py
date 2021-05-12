@@ -152,8 +152,7 @@ def booking_request(request):
 
 
 def profile(request):
-    obj=Admin.objects.filter(id=1)
-    return render(request, 'app/profile.html',{'obj':obj})
+    return render(request, 'app/profile.html')
 
 
 ######EDIT#########

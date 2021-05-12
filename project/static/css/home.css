@@ -71,3 +71,10 @@
 #aar:visited{
   background-color: gray;
 }
+
+.bd{
+  border: 1px solid red;
+  width: 100%;
+  background-color: #1c5534;
+  color: red;
+}
