@@ -134,6 +134,22 @@ def coupons(request):
     return render(request,'app/coupons.html', {'coup':coup})
 
 
+def drivers_verify(request):
+    if 'q' in request.GET:
+        q=request.GET['q']
+        drivers=Driver.objects.filter(driver_name__icontains=q)
+        drivers=drivers.filter(status='UNDER VARIFICATION')
+    else:
+        drivers=Driver.objects.all().filter(status='UNDER VARIFICATION')
+    return render(request, 'app/drivers_verify.html',{'drivers':drivers})
+
+
+def booking_request(request):
+    bookingdetailss=BookingDetails.objects.all().filter(assign_driver=None)
+    return render(request,'app/booking_request.html' , {'bookingdetailss':bookingdetailss})
+
+
+
 ######EDIT#########
 
 
@@ -146,7 +162,7 @@ def editdriver(request, pk):
         form = DriverFrom(request.POST, instance=driver)
         if form.is_valid():
             form.save()
-            return redirect('driver')
+            return redirect('drivers_verify')
     return render(request,'app/editdriver.html', {'form':form})
 
 @login_required
@@ -161,6 +177,17 @@ def edituser(request, pk):
             return redirect('customeruser')
     return render(request,'app/edituser.html', {'form':form})
 
+
+def assigndriver(request, pk):
+    booking = BookingDetails.objects.get(booking_id=pk)
+    form = AssignDriverForm(instance=booking)
+    if request.method == 'POST':
+        form = AssignDriverForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('booking_request')
+    return render(request,'app/assign_driver.html', {'form':form})
+  
 
 ##########DELETE############
 
