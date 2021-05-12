@@ -24,7 +24,7 @@ class BookingDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=BookingDetails
-        fields=['booking_id','trip_type','pickup_point','Pickup_date_time','drop_point','drop_date','selected_car','name','mobile_no','user_id','approx_km_travelling','coupon','coupon_discount_amount','fare','advance_payment_medium','cash_drop_point','transaction_no']                                                                                                                            
+        fields=['booking_id','trip_type','pickup_point','Pickup_date_time','drop_point','drop_date','selected_car','name','mobile_no','user_id','approx_km_travelling','coupon','coupon_discount_amount','fare','advance_payment_medium','cash_drop_point','transaction_no','assign_driver']                                                                                                                            
 
 class BookingHistorySerializer(serializers.ModelSerializer):
 
