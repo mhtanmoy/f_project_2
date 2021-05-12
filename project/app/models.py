@@ -71,7 +71,7 @@ class Admin(models.Model):
     name=models.CharField(max_length=50)
     contact_no=models.CharField(max_length=25)
     email=models.EmailField(max_length=60, null=True, blank=True)
-    admin = models.ForeignKey(User,on_delete=models.CASCADE)
+    admin = models.OneToOneField(User,related_name='profile', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name  

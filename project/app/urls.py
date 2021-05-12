@@ -30,5 +30,6 @@ urlpatterns = [
     path('driversverify', views.drivers_verify, name='drivers_verify'),
     path('bookingrequest', views.booking_request, name='booking_request'), 
     path('assigndriver/<int:pk>', views.assigndriver, name='assigndriver'),   
+    path('profile', views.profile, name='profile'), 
 
 ]

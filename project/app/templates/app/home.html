@@ -37,7 +37,7 @@
             <i class="fa fa-user fa-fw fa-inverse"></i> <i class="fa fa-caret-down fa-inverse"></i>
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><a href="/administrator"><i class="fa fa-user fa-fw">
+            <li><a href="/profile"><i class="fa fa-user fa-fw">
 
             </i>
              {% if user.is_authenticated %}
@@ -90,7 +90,7 @@
                   <a href="{% url 'bookinghistory' %}" class="kk">Booking History</a>
                 </li>
                 <li>
-                  <a href="#" class="kk">Driver's Account Verification</a>
+                  <a href="/driversverify" class="kk">Driver's Account Verification</a>
                 </li>
                 <li>
                   <a href="{% url 'bookinghistory' %}" class="kk">All Time Bookings</a>
@@ -174,7 +174,7 @@
         </div>
       </a>
 
-        <a href="/administrator">
+        <a href="/administrator/auth/user/">
         <div class="col-lg-3 col-md-6">
           <div class="panel panel" id="pan">
             <div class="panel-heading">

@@ -151,6 +151,10 @@ def booking_request(request):
     return render(request,'app/booking_request.html' , {'bookingdetailss':bookingdetailss})
 
 
+def profile(request):
+    obj=Admin.objects.filter(id=1)
+    return render(request, 'app/profile.html',{'obj':obj})
+
 
 ######EDIT#########
 
@@ -310,5 +314,7 @@ def createnotification(request):
             form.save()
             return redirect('notification')
     return render(request,'app/createnotification.html', {'form':form})
+
+
 
 
