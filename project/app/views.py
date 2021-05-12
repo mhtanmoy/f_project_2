@@ -7,6 +7,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from .decorators import *
+from django.db.models import Q
 
 
 ######LOGIN & REGISTER#######
@@ -68,8 +69,9 @@ def driver(request):
     if 'q' in request.GET:
         q=request.GET['q']
         drivers=Driver.objects.filter(driver_name__icontains=q)
+        drivers = drivers.filter(Q(status='ACTIVE') | Q(status='OFFLINE') | Q(status='ON A RIDE'))
     else:
-        drivers=Driver.objects.all()
+        drivers=Driver.objects.all().filter(Q(status='ACTIVE') | Q(status='OFFLINE') | Q(status='ON A RIDE'))
     return render(request,'app/driver.html' , {'drivers':drivers})
 
 @login_required
