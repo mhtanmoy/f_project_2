@@ -54,7 +54,9 @@ def signupuser(request):
 
 @login_required
 def home(request):
-    return render(request,'app/home.html')
+    driver=Driver.objects.all().filter(status='UNDER VARIFICATION').count()
+    booking_req= BookingDetails.objects.all().filter(assign_driver=None).count()
+    return render(request,'app/home.html',{'driver':driver,'booking_req':booking_req})
 
 @login_required
 def driver(request):

@@ -19,22 +19,22 @@
   
   <div id="wrapper">
 
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-      <div class="navbar-header">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color: #2E8B57;">
+      <div class="navbar-header" style="background-color: #2E8B57;">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                       <span class="sr-only"></span>
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-        <a class="navbar-brand" href="#"><div id="h2">SAFAR ADMIN PANEL</div></a>
+        <a class="navbar-brand" href="/"><div id="h2">SAFAR ADMIN PANEL</div></a>
       </div>
   
       <ul class="nav navbar-top-links navbar-right">
   
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+        <li class="dropdown" id="aar">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="aar">
+            <i class="fa fa-user fa-fw fa-inverse"></i> <i class="fa fa-caret-down fa-inverse"></i>
           </a>
           <ul class="dropdown-menu dropdown-user">
             <li><a href="/administrator"><i class="fa fa-user fa-fw">
@@ -165,7 +165,7 @@
             <div class="panel-heading">
               <div class="row">
                 <div class="col-xs-9 text-center">
-                  <h4>Booking Request</h4>
+                  <h4>Booking Request ({{ booking_req }})</h4>
               
                 </div>
               </div>
@@ -212,7 +212,7 @@
               <div class="row">
                 
                 <div class="col-xs-9 text-center">
-                  <h4>Driver's Account Verify</h4>
+                  <h4>Driver's Account Verify({{ driver }})</h4>
                   
                 </div>
               </div>

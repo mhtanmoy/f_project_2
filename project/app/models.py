@@ -96,7 +96,7 @@ class BookingDetails(models.Model):
     advance_payment_medium=models.CharField(max_length=50)
     cash_drop_point=models.CharField(max_length=150,null=True,blank=True) 
     transaction_no=models.CharField(max_length=100,null=True,blank=True) 
-    assign_driver=models.ForeignKey(Driver, on_delete=models.CASCADE, limit_choices_to={'status':'ACTIVE'})
+    assign_driver=models.ForeignKey(Driver, on_delete=models.CASCADE, limit_choices_to={'status':'ACTIVE'}, null=True,blank=True)
 
     def __str__(self):
         return self.trip_type
