@@ -9,6 +9,7 @@ from .forms import *
 from .decorators import *
 
 
+######LOGIN & REGISTER#######
 
 @unauthenticated_user
 def loginuser(request):
@@ -51,12 +52,16 @@ def signupuser(request):
 	return redirect('loginuser')
 
 
+##########HOME############
 
 @login_required
 def home(request):
     driver=Driver.objects.all().filter(status='UNDER VARIFICATION').count()
     booking_req= BookingDetails.objects.all().filter(assign_driver=None).count()
     return render(request,'app/home.html',{'driver':driver,'booking_req':booking_req})
+
+
+#######ALL THE PAGE FUNCTIONALITY########
 
 @login_required
 def driver(request):
@@ -114,6 +119,24 @@ def alluser(request):
         admin = Admin.objects.all()
     return render(request,'app/alluser.html',{'admin':admin})
 
+
+@login_required
+@manager_only
+def notification(request):
+    noti=Notification.objects.all()
+    return render(request,'app/notification.html', {'noti':noti})
+
+
+@login_required
+@manager_only
+def coupons(request):
+    coup=Coupons.objects.all()
+    return render(request,'app/coupons.html', {'coup':coup})
+
+
+######EDIT#########
+
+
 @login_required
 @manager_only
 def editdriver(request, pk):
@@ -138,6 +161,10 @@ def edituser(request, pk):
             return redirect('customeruser')
     return render(request,'app/edituser.html', {'form':form})
 
+
+##########DELETE############
+
+
 @login_required
 @manager_only
 def deletedriver(request, pk):
@@ -146,78 +173,7 @@ def deletedriver(request, pk):
 		driver.delete()
 		return redirect('driver')
 
-@login_required
-@manager_only
-def createdriver(request):
-    form = DriverFrom()
-    if request.method == 'POST':
-        form = DriverFrom(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('driver')
-    return render(request,'app/createdriver.html', {'form':form})
 
-
-
-@login_required
-@manager_only
-def createvehicle(request):
-    if request.method == 'GET':
-        return render(request, 'app/createvehicle.html', {'form':VehicleFrom()})
-    else:
-        try:
-            vehicle = VehicleFrom(data=request.POST,files=request.FILES)
-            vehicles = vehicle.save(commit=False)
-            vehicles.user = request.user
-            vehicles.save()
-            return redirect('vehicle')
-        except ValueError:
-            return render(request, 'app/createvehicle.html', {'form':VehicleFrom()})
-
-
-@login_required
-@manager_only
-def notification(request):
-    noti=Notification.objects.all()
-    return render(request,'app/notification.html', {'noti':noti})
-
-
-@login_required
-@manager_only
-def createnotification(request):
-    form = NotificationFrom()
-    if request.method == 'POST':
-        form = NotificationFrom(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('notification')
-    return render(request,'app/createnotification.html', {'form':form})
-
-@login_required
-@manager_only
-def deletenotification(request,pk):
-    obj=get_object_or_404(Notification,id=pk)
-    if request.method =='GET':
-        obj.delete()
-        return redirect('notification')
-
-@login_required
-@manager_only
-def coupons(request):
-    coup=Coupons.objects.all()
-    return render(request,'app/coupons.html', {'coup':coup})
-
-
-@login_required
-@manager_only
-def createcoupons(request):
-    form = CouponsFrom()
-    if request.method == 'POST':
-        form = CouponsFrom(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('coupons')
-    return render(request,'app/createcoupons.html', {'form':form})
 
 @login_required
 @manager_only
@@ -258,4 +214,72 @@ def deletecustomer(request,pk):
     if request.method =='GET':
         obj.delete()
         return redirect('customeruser')
+
+
+@login_required
+@manager_only
+def deletenotification(request,pk):
+    obj=get_object_or_404(Notification,id=pk)
+    if request.method =='GET':
+        obj.delete()
+        return redirect('notification')
+
+
+
+#######CREATE###########
+
+@login_required
+@manager_only
+def createdriver(request):
+    form = DriverFrom()
+    if request.method == 'POST':
+        form = DriverFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('driver')
+    return render(request,'app/createdriver.html', {'form':form})
+
+
+@login_required
+@manager_only
+def createcoupons(request):
+    form = CouponsFrom()
+    if request.method == 'POST':
+        form = CouponsFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('coupons')
+    return render(request,'app/createcoupons.html', {'form':form})
+
+
+
+@login_required
+@manager_only
+def createvehicle(request):
+    if request.method == 'GET':
+        return render(request, 'app/createvehicle.html', {'form':VehicleFrom()})
+    else:
+        try:
+            vehicle = VehicleFrom(data=request.POST,files=request.FILES)
+            vehicles = vehicle.save(commit=False)
+            vehicles.user = request.user
+            vehicles.save()
+            return redirect('vehicle')
+        except ValueError:
+            return render(request, 'app/createvehicle.html', {'form':VehicleFrom()})
+
+
+
+
+@login_required
+@manager_only
+def createnotification(request):
+    form = NotificationFrom()
+    if request.method == 'POST':
+        form = NotificationFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('notification')
+    return render(request,'app/createnotification.html', {'form':form})
+
 
