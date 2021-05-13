@@ -125,7 +125,7 @@ def alluser(request):
 @login_required
 @manager_only
 def notification(request):
-    noti=Notification.objects.all()
+    noti=Notification.objects.all().order_by('-date')
     return render(request,'app/notification.html', {'noti':noti})
 
 

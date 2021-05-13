@@ -1,13 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+from django.db.models.fields import DateField
+from django.utils.timezone import now
 
 
 class Driver(models.Model):
     driver_id = models.AutoField(primary_key=True)
     driver_name=models.CharField(max_length=150)
-    mobile_no=models.CharField(max_length=20, null=True)
-    pin_code=models.CharField(max_length=10, null=True)
+    mobile_no=models.CharField(max_length=20)
+    pin_code=models.PositiveIntegerField()
     mohalla_or_village=models.CharField(max_length=200, null=True)
     district=models.CharField(max_length=200, null=True)
     state=models.CharField(max_length=200, null=True)
@@ -25,8 +27,8 @@ class Driver(models.Model):
         return self.driver_name
 
 class CustomerUser(models.Model):
-    user_name = models.CharField(max_length=150, null=True)
-    mobile_no = models.CharField(max_length=25, null=True)
+    user_name = models.CharField(max_length=150)
+    mobile_no = models.CharField(max_length=25)
     wallet_amount = models.CharField(max_length=10, null=True)
     email_id = models.EmailField(max_length=60, null=True, blank=True)
     User_Id = models.AutoField(primary_key=True)
@@ -52,7 +54,7 @@ class Vehicle(models.Model):
 
 class BookingHistory(models.Model):
     booking_history_id = models.AutoField(primary_key=True)
-    booking_Date=models.DateField(null=True, blank=True)
+    booking_Date=models.DateField()
     choice=(('Round trip','Round trip'),('One way','One way'),('Local','Local'))
     trip_type=models.CharField(max_length=50, choices=choice, default='', null=True) 
     pickup_date_time=models.DateTimeField(null=True, blank=True)
@@ -104,7 +106,8 @@ class BookingDetails(models.Model):
 
 
 class Notification(models.Model):
-    title=models.CharField(max_length=150) 
+    title=models.CharField(max_length=150)
+    date=models.DateField(default=now)
     description=models.TextField() 
     type=models.CharField(max_length=50) 
 
@@ -114,6 +117,7 @@ class Notification(models.Model):
 
 class Coupons(models.Model):
     coupon=models.CharField(max_length=150) 
+    date=models.DateField(default=now)
 
     def __str__(self):
         return self.coupon

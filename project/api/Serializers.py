@@ -38,10 +38,10 @@ class NotificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Notification
-        fields=['id','title','description','type']
+        fields=['id','title','date','description','type']
 
 class CouponsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Coupons
-        fields=['id','coupon']
+        fields=['id','date','coupon']

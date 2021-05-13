@@ -40,6 +40,7 @@ class VehicleFrom(ModelForm):
 
 
 class NotificationFrom(ModelForm):
+	
 	class Meta:
 		model = Notification
 		fields = '__all__'
