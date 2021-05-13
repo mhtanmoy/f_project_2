@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.fields import ReadOnlyField
 from app.models import *
 
 class DriverSerializer(serializers.ModelSerializer):
@@ -21,7 +22,7 @@ class VehicleSerializer(serializers.ModelSerializer):
                                                                 
 
 class BookingDetailsSerializer(serializers.ModelSerializer):
-
+    assign_driver = DriverSerializer(read_only=True)
     class Meta:
         model=BookingDetails
         fields=['booking_id','trip_type','pickup_point','Pickup_date_time','drop_point','drop_date','selected_car','name','mobile_no','user_id','approx_km_travelling','coupon','coupon_discount_amount','fare','advance_payment_medium','cash_drop_point','transaction_no','assign_driver']                                                                                                                            
