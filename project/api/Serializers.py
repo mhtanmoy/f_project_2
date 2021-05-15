@@ -3,10 +3,13 @@ from rest_framework.fields import ReadOnlyField
 from app.models import *
 
 class DriverSerializer(serializers.ModelSerializer):
-    
+    status=serializers.ReadOnlyField()
     class Meta:
         model=Driver
         fields=['driver_id','driver_name','mobile_no','pin_code','mohalla_or_village','district','state','vehicle_registration_no','vehicle_brand','vehicle_model','insurance_validity','insurance_type','registration_year','km_driven','status']
+    
+
+
 
 class CustomerUserSerializer(serializers.ModelSerializer):
 
