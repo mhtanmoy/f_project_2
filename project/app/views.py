@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .decorators import *
 from django.db.models import Q
+import datetime
 
 
 ######LOGIN & REGISTER#######
@@ -136,6 +137,8 @@ def coupons(request):
     return render(request,'app/coupons.html', {'coup':coup})
 
 
+@login_required
+@manager_only
 def drivers_verify(request):
     if 'q' in request.GET:
         q=request.GET['q']
@@ -146,6 +149,8 @@ def drivers_verify(request):
     return render(request, 'app/drivers_verify.html',{'drivers':drivers})
 
 
+@login_required
+@manager_only
 def booking_request(request):
     bookingdetailss=BookingDetails.objects.all().filter(assign_driver=None)
     return render(request,'app/booking_request.html' , {'bookingdetailss':bookingdetailss})
@@ -153,6 +158,26 @@ def booking_request(request):
 
 def profile(request):
     return render(request, 'app/profile.html')
+
+
+def today(request):
+    date=datetime.date.today()
+    bookingdetailss=BookingDetails.objects.all().filter(drop_date=date)
+    return render(request,'app/today.html' , {'bookingdetailss':bookingdetailss})
+
+def week(request):
+    date=datetime.date.today()
+    start_week = date - datetime.timedelta(date.weekday())
+    end_week = start_week + datetime.timedelta(7)
+    bookingdetailss=BookingDetails.objects.all().filter(drop_date__range=[start_week, end_week])
+    return render(request,'app/week.html' , {'bookingdetailss':bookingdetailss})
+
+def month(request):
+    date=datetime.date.today()
+    start_week = date - datetime.timedelta(date.weekday())
+    end_week = start_week + datetime.timedelta(30)
+    bookingdetailss=BookingDetails.objects.all().filter(drop_date__range=[start_week, end_week])
+    return render(request,'app/month.html' , {'bookingdetailss':bookingdetailss})
 
 
 ######EDIT#########
