@@ -36,6 +36,16 @@ class CustomerUser(models.Model):
     def __str__(self):
         return self.user_name
 
+class Brand(models.Model):
+    brand_name=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.brand_name
+
+class BrandModel(models.Model):
+    modelname=models.CharField(max_length=50)
+    brand_name=models.ForeignKey(Brand, on_delete=models.CASCADE)
+
 
 class Vehicle(models.Model):
     vehicle_id = models.AutoField(primary_key=True)

@@ -15,7 +15,7 @@
             <h3>Add Vehicle</h3>
             <br>
             <fieldset>
-                {{ form.brand|attr:"placeholder: Enter Brand" }}
+                {{ form.brand|add_class:'input'|attr:"placeholder: Enter Brand" }}
             </fieldset>
             <fieldset>
                 {{ form.model|attr:"placeholder: Enter Model" }}

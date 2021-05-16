@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import *
+from django.forms import ModelChoiceField
 
 
 class CreateUserForm(UserCreationForm):
@@ -33,6 +34,7 @@ class CustomerUserFrom(ModelForm):
 
 
 class VehicleFrom(ModelForm):
+	brand = ModelChoiceField(queryset=Brand.objects.all())
 	class Meta:
 		model = Vehicle
 		fields = ['brand','model','fare_per_km' ,'air_conditioned','luggage_capacity','number_of_seat','front_image','side_image','back_image']
