@@ -22,6 +22,16 @@ urlpatterns = [
     path('notification/<int:pk>/delete', views.deletenotification, name='deletenotification'),  
     path('coupons', views.coupons, name='coupons'),
     path('createcoupons', views.createcoupons, name='createcoupons'), 
+
+    path('brand', views.brand, name='brand'),
+    path('createbrand', views.createbrand, name='createbrand'), 
+
+    path('model', views.brandmodel, name='brandmodel'),
+    path('createmodel', views.createbrandmodel, name='createbrandmodel'), 
+
+    path('insurance', views.insurance, name='insurance'),
+    path('createinsurance', views.createinsurance, name='createinsurance'), 
+
     path('coupons/<int:pk>/delete', views.deletecoupons, name='deletecoupons'),
     path('bookinghistory/<int:pk>/delete', views.deletebookinghistory, name='deletebookinghistory'),
     path('vehicle/<int:pk>/delete', views.deletevehicle, name='deletevehicle'),

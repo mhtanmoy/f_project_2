@@ -42,9 +42,19 @@ class Brand(models.Model):
     def __str__(self):
         return self.brand_name
 
+
+class Insurance(models.Model):
+    insurance_type=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.insurance_type
+
 class BrandModel(models.Model):
     modelname=models.CharField(max_length=50)
     brand_name=models.ForeignKey(Brand, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.modelname
 
 
 class Vehicle(models.Model):

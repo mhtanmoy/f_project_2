@@ -21,6 +21,7 @@ class AdminForm(ModelForm):
 		exclude = ['admin']
 
 class DriverFrom(ModelForm):
+	insurance_type = ModelChoiceField(queryset=Insurance.objects.all())
 	class Meta:
 		model = Driver
 		fields = '__all__'
@@ -35,6 +36,7 @@ class CustomerUserFrom(ModelForm):
 
 class VehicleFrom(ModelForm):
 	brand = ModelChoiceField(queryset=Brand.objects.all())
+	model = ModelChoiceField(queryset=BrandModel.objects.all())
 	class Meta:
 		model = Vehicle
 		fields = ['brand','model','fare_per_km' ,'air_conditioned','luggage_capacity','number_of_seat','front_image','side_image','back_image']
@@ -59,3 +61,17 @@ class AssignDriverForm(ModelForm):
 		model =BookingDetails
 		fields = ['assign_driver']
 
+class BrandFrom(ModelForm):
+	class Meta:
+		model = Brand
+		fields = ['brand_name']
+
+class InsuranceFrom(ModelForm):
+	class Meta:
+		model = Insurance
+		fields = ['insurance_type']
+
+class BrandModelFrom(ModelForm):
+	class Meta:
+		model = BrandModel
+		fields = '__all__'

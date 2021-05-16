@@ -136,6 +136,23 @@ def coupons(request):
     coup=Coupons.objects.all()
     return render(request,'app/coupons.html', {'coup':coup})
 
+@login_required
+@manager_only
+def brand(request):
+    bran=Brand.objects.all()
+    return render(request,'app/brand.html', {'bran':bran})
+
+@login_required
+@manager_only
+def brandmodel(request):
+    branm=BrandModel.objects.all()
+    return render(request,'app/brandmodel.html', {'branm':branm})
+
+@login_required
+@manager_only
+def insurance(request):
+    insu=Insurance.objects.all()
+    return render(request,'app/insurance.html', {'insu':insu})
 
 @login_required
 @manager_only
@@ -338,6 +355,41 @@ def createnotification(request):
             form.save()
             return redirect('notification')
     return render(request,'app/createnotification.html', {'form':form})
+
+
+@login_required
+@manager_only
+def createbrand(request):
+    form = BrandFrom()
+    if request.method == 'POST':
+        form = BrandFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('brand')
+    return render(request,'app/createbrand.html', {'form':form})
+
+
+@login_required
+@manager_only
+def createbrandmodel(request):
+    form = BrandModelFrom()
+    if request.method == 'POST':
+        form = BrandModelFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('brandmodel')
+    return render(request,'app/createbrandmodel.html', {'form':form})
+
+@login_required
+@manager_only
+def createinsurance(request):
+    form = InsuranceFrom()
+    if request.method == 'POST':
+        form = InsuranceFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('insurance')
+    return render(request,'app/createinsurance.html', {'form':form})
 
 
 

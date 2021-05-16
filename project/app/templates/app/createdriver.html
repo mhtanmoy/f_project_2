@@ -53,11 +53,12 @@
             </fieldset>
 
             <fieldset>
-                {{ form.insurance_validity|attr:"placeholder: Enter insurance validity" }}
+                {{ form.insurance_type|add_class:'input'|attr:"placeholder: Enter insurance type" }}
             </fieldset>
 
+            
             <fieldset>
-                {{ form.insurance_type|attr:"placeholder: Enter insurance type" }}
+                {{ form.insurance_validity|attr:"placeholder: Enter insurance validity" }}
             </fieldset>
 
             <fieldset>
