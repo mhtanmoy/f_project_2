@@ -10,6 +10,7 @@ from .decorators import *
 from django.db.models import Q
 import datetime
 from django.utils.crypto import get_random_string
+from .filters import *
 
 
 ######LOGIN & REGISTER#######
@@ -229,12 +230,16 @@ def edituser(request, pk):
 def assigndriver(request, pk):
     booking = BookingDetails.objects.get(booking_id=pk)
     form = AssignDriverForm(instance=booking)
+    temp=Driver.objects.all()
+    form2= OrderFilter(request.GET, queryset=temp)
+    drivers = form2.qs
+
     if request.method == 'POST':
         form = AssignDriverForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
             return redirect('booking_request')
-    return render(request,'app/assign_driver.html', {'form':form})
+    return render(request,'app/assign_driver.html', {'form':form,'form2': form2,'drivers': drivers})
   
 
 ##########DELETE############
