@@ -46,6 +46,7 @@
             <div class="tbl-header">
                 <thead>
                     <tr>
+                      <th>Driver ID</th>
                       <th>name</th>
                       <th>phone</th>
                       <th>pin code</th>
@@ -68,7 +69,7 @@
             <tbody>
               {% for i in drivers %}
             <tr>
-
+              <td>{{ i.unid }}</td>
               <td>{{ i.driver_name }}</td> 
               <td>{{ i.mobile_no }}</td> 
               <td>{{ i.pin_code }}</td> 

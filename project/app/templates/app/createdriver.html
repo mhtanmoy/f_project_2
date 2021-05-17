@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
     <title>Safar Admin Panel</title>
 </head>
+
 <body>
     
     <div class="container">  
@@ -16,6 +17,12 @@
             <h3>Add Driver</h3>
             <br>
             {% csrf_token %}
+
+            <fieldset>
+                <div>Driver Unique Id</div>
+                {{ form.unid|attr:"placeholder: Driver UserId" }}
+            </fieldset>
+
             <fieldset>
                 {{ form.driver_name|attr:"placeholder: Enter Driver Name" }}
             </fieldset>

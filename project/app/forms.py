@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import *
 from django.forms import ModelChoiceField
-
+from django.utils.crypto import get_random_string
 
 class CreateUserForm(UserCreationForm):
 	name = forms.CharField(max_length=32, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -25,13 +25,13 @@ class DriverFrom(ModelForm):
 	class Meta:
 		model = Driver
 		fields = '__all__'
-		exclude = ['driver_id']
+
+
 
 class CustomerUserFrom(ModelForm):
 	class Meta:
 		model = CustomerUser
 		fields = '__all__'
-		exclude = ['User_Id']
 
 
 class VehicleFrom(ModelForm):

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import DateField
 from django.utils.timezone import now
+from django.utils.crypto import get_random_string
 
 
 class Driver(models.Model):
@@ -22,6 +23,9 @@ class Driver(models.Model):
     km_driven=models.CharField(max_length=50, null=True)
     choice=(('UNDER VARIFICATION','UNDER VARIFICATION'),('ACTIVE','ACTIVE'),('OFFLINE','OFFLINE'),('ON A RIDE','ON A RIDE'))
     status=models.CharField(max_length=50, choices=choice, default='pending', null=True) 
+
+    unid= models.CharField(max_length=10)
+
     
     def __str__(self):
         return self.driver_name
@@ -31,7 +35,7 @@ class CustomerUser(models.Model):
     mobile_no = models.CharField(max_length=25)
     wallet_amount = models.CharField(max_length=10, null=True)
     email_id = models.EmailField(max_length=60, null=True, blank=True)
-    User_Id = models.AutoField(primary_key=True)
+    User_Id = models.CharField(max_length=10,unique=True)
 
     def __str__(self):
         return self.user_name
@@ -129,7 +133,8 @@ class Notification(models.Model):
     title=models.CharField(max_length=150)
     date=models.DateField(default=now)
     description=models.TextField() 
-    type=models.CharField(max_length=50) 
+    choice=(('Driver','Driver'),('Customer','Customer'))
+    type=models.CharField(max_length=50, choices=choice, default='None', null=True) 
 
     def __str__(self):
         return self.title
