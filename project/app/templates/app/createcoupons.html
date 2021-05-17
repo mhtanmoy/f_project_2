@@ -17,10 +17,16 @@
             <br>
             {% csrf_token %}
             <fieldset>
-                {{ form.coupon|attr:"placeholder: Enter Coupon code" }}
+                {{ form.code|attr:"placeholder: Enter Coupon code" }}
             </fieldset>
             <fieldset>
-                {{ form.date|attr:"placeholder: Date" }}
+                {{ form.amount|add_class:'input'|attr:"placeholder: Enter Discount Amount" }}
+            </fieldset>
+            <fieldset>
+                {{ form.valid_from|attr:"placeholder: Enter Valid From date" }}
+            </fieldset>
+            <fieldset>
+                {{ form.valid_up_to|attr:"placeholder: Enter Valid up to date" }}
             </fieldset>
         <button type="submit" id="contact-submit">Create</button>
         

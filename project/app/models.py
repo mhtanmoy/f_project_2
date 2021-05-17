@@ -136,8 +136,10 @@ class Notification(models.Model):
 
 
 class Coupons(models.Model):
-    coupon=models.CharField(max_length=150) 
-    date=models.DateField(default=now)
+    code=models.CharField(max_length=150) 
+    amount=models.PositiveIntegerField(max_length=150) 
+    valid_from=models.DateField(default=now)
+    valid_up_to=models.DateField(default=now)
 
     def __str__(self):
         return self.coupon
