@@ -137,7 +137,7 @@ class Notification(models.Model):
 
 class Coupons(models.Model):
     code=models.CharField(max_length=150) 
-    amount=models.PositiveIntegerField(max_length=150) 
+    amount=models.PositiveIntegerField() 
     valid_from=models.DateField(default=now)
     valid_up_to=models.DateField(default=now)
 
