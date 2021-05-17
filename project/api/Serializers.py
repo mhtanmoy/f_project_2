@@ -15,7 +15,7 @@ class CustomerUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=CustomerUser
-        fields=['User_Id','user_name','mobile_no','wallet_amount','email_id']
+        fields=['user_name','mobile_no','wallet_amount','email_id']
 
 class VehicleSerializer(serializers.ModelSerializer):
 

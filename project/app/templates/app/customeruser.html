@@ -22,7 +22,7 @@
         <div class="wrap">
           <div class="search">
             <form method="GET">
-              <input name="q" type="text" class="searchTerm" placeholder="Search with username">
+              <input name="q" type="text" class="searchTerm" placeholder="Search with Name">
               <br>
               <br>
               <button type="submit" class="searchButton">
@@ -39,6 +39,7 @@
             <div class="tbl-header">
                 <thead>
                     <tr>
+                      <th>User Id</th>
                       <th>Name</th>
                       <th>Mobile number</th>
                       <th>Wallet amount</th>
@@ -51,7 +52,7 @@
             <tbody>
               {% for i in customerusers %}
             <tr>
-
+              <td>{{ i.User_Id }}</td>
               <td>{{ i.user_name }}</td> 
               <td>{{ i.mobile_no }}</td> 
               <td>{{ i.wallet_amount }}</td>  

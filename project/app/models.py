@@ -24,7 +24,9 @@ class Driver(models.Model):
     choice=(('UNDER VARIFICATION','UNDER VARIFICATION'),('ACTIVE','ACTIVE'),('OFFLINE','OFFLINE'),('ON A RIDE','ON A RIDE'))
     status=models.CharField(max_length=50, choices=choice, default='pending', null=True) 
 
-    unid= models.CharField(max_length=10)
+    def unid(self):
+        temp= self.driver_id*3
+        return f'{self.driver_id}{temp}'
 
     
     def __str__(self):
@@ -35,7 +37,11 @@ class CustomerUser(models.Model):
     mobile_no = models.CharField(max_length=25)
     wallet_amount = models.CharField(max_length=10, null=True)
     email_id = models.EmailField(max_length=60, null=True, blank=True)
-    User_Id = models.CharField(max_length=10,unique=True)
+    #User_Id = models.CharField(max_length=10,unique=True)
+
+    def User_Id(self):
+        temp= self.id*3
+        return f'{self.id}{temp}'
 
     def __str__(self):
         return self.user_name

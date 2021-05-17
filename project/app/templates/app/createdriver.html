@@ -18,10 +18,7 @@
             <br>
             {% csrf_token %}
 
-            <fieldset>
-                <div>Driver Unique Id</div>
-                {{ form.unid|attr:"placeholder: Driver UserId" }}
-            </fieldset>
+            
 
             <fieldset>
                 {{ form.driver_name|attr:"placeholder: Enter Driver Name" }}
