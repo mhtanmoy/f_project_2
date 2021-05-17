@@ -21,6 +21,8 @@ class AdminForm(ModelForm):
 		exclude = ['admin']
 
 class DriverFrom(ModelForm):
+	vehicle_brand = ModelChoiceField(queryset=Brand.objects.all())
+	vehicle_model = ModelChoiceField(queryset=BrandModel.objects.all())
 	insurance_type = ModelChoiceField(queryset=Insurance.objects.all())
 	class Meta:
 		model = Driver

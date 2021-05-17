@@ -14,10 +14,10 @@
             {% csrf_token %}
             <h3>Add Vehicle</h3>
             <br>
-            <fieldset>
+            <fieldset><div>Brand</div>
                 {{ form.brand|add_class:'input'|attr:"placeholder: Enter Brand" }}
             </fieldset>
-            <fieldset>
+            <fieldset><div>Model</div>
                 {{ form.model|add_class:'input'|attr:"placeholder: Enter Model" }}
             </fieldset>
             <fieldset>
