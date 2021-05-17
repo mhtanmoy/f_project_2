@@ -29,6 +29,12 @@ class DriverFrom(ModelForm):
 		fields = '__all__'
 
 
+class DriverEditFrom(ModelForm):
+	class Meta:
+		model = Driver
+		fields = '__all__'
+
+
 
 class CustomerUserFrom(ModelForm):
 	class Meta:

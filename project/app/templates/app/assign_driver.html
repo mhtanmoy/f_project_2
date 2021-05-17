@@ -14,25 +14,32 @@
     <title>Safar Admin Panel</title>
 </head>
 <body>
-    
+
     <section>
+
         <h1>Driver List</h1><br>
-  
-      <div class="container">
-        <form method="GET" class="container" id="contact">
+    <div style="display: inline;">
+    <a href="/" class="homebtn"><i class="fa fa-home fa-3x fa-inverse" aria-hidden="true" id="ic"></i></a>
+  </div>
+  <br><br>
+      <div>
+        <form method="GET">
             {{ form2.form }}
-            <button type="submit">Filter</button>
+            <button type="submit" 
+            style="	cursor:pointer;
+            width:25%;
+            border:none;
+            background:#2E8B57;
+            color:#FFF;
+            margin-top: 20px;
+            margin-left: 36%;
+            padding:10px;
+            font-size:15px;">Filter</button>
         </form>
 
       </div>
        
-       <div style="display: inline;">
-        <a href="/" class="homebtn"><i class="fa fa-home fa-3x fa-inverse" aria-hidden="true" id="ic"></i></a>
 
-      <a href="{% url 'createdriver' %}" class="homebtn crtbtn">
-        <i class="fa fa-plus fa-3x fa-inverse" aria-hidden="true"></i>
-      </a>
-      </div>
        <br><br><br>
 
         
@@ -56,8 +63,7 @@
                       <th>registration year</th>
                       <th>driven(km)</th>
                       <th>status</th>
-                      <th>edit</th>
-                      <th>delete</th>
+
                     </tr>
                   </thead>
                 </div>
@@ -89,7 +95,7 @@
       <div class="container">
 
 
-          <form method="POST" class="container" id="contact">
+          <form method="POST" class="container" id="contact" style="margin-top: -50px;">
             <h3>Assign Driver Driver</h3>
             <br>
             {% csrf_token %}

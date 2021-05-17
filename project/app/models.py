@@ -25,8 +25,7 @@ class Driver(models.Model):
     status=models.CharField(max_length=50, choices=choice, default='pending', null=True) 
 
     def unid(self):
-        temp= self.driver_id*3
-        return f'{self.driver_id}{temp}'
+        return f'{self.driver_id}'
 
     
     def __str__(self):
@@ -128,7 +127,7 @@ class BookingDetails(models.Model):
     advance_payment_medium=models.CharField(max_length=50)
     cash_drop_point=models.CharField(max_length=150,null=True,blank=True) 
     transaction_no=models.CharField(max_length=100,null=True,blank=True) 
-    assign_driver=models.ForeignKey(Driver, on_delete=models.CASCADE, limit_choices_to={'status':'ACTIVE'}, null=True, blank=True)
+    assign_driver=models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.trip_type

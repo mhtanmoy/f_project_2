@@ -206,9 +206,9 @@ def month(request):
 @manager_only
 def editdriver(request, pk):
     driver = Driver.objects.get(driver_id=pk)
-    form = DriverFrom(instance=driver)
+    form = DriverEditFrom(instance=driver)
     if request.method == 'POST':
-        form = DriverFrom(request.POST, instance=driver)
+        form = DriverEditFrom(request.POST, instance=driver)
         if form.is_valid():
             form.save()
             return redirect('drivers_verify')
@@ -227,6 +227,8 @@ def edituser(request, pk):
     return render(request,'app/edituser.html', {'form':form})
 
 
+@login_required
+@manager_only
 def assigndriver(request, pk):
     booking = BookingDetails.objects.get(booking_id=pk)
     form = AssignDriverForm(instance=booking)
