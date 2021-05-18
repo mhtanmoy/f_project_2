@@ -61,7 +61,7 @@ class NotificationFrom(ModelForm):
 
 
 class CouponsFrom(ModelForm):
-	user = ModelMultipleChoiceField(queryset=CustomerUser.objects.all())
+	user = ModelMultipleChoiceField(widget = forms.CheckboxSelectMultiple, queryset=CustomerUser.objects.all())
 	class Meta:
 		model = Coupons
 		fields = '__all__'

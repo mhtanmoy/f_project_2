@@ -6,6 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <style>
+        .dropbtn {
+          background-color: #f3f3f3;
+          color: rgb(0, 0, 0);
+          border: 1px solid #000000;
+          
+          padding: 10px;
+          font-size: 16px;
+          width: 100%;
+          cursor: pointer;
+        }
+        
+        .dropbtn:hover, .dropbtn:focus {
+          background-color: #e0e0e0;
+        }
+        
+        .dropdown {
+            width: 100%;
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          
+          background-color: #e0e0e0;
+          color: black;
+          min-width: 100%;
+          overflow: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .dropdown a:hover {background-color: #ddd;}
+        
+        .show {display: block;}
+
+        .input3{
+            font-size: medium;
+            padding-left: 20px;
+        }
+        </style>
     <title>Safar Admin Panel</title>
 </head>
 <body>
@@ -21,7 +69,12 @@
             </fieldset>
 
             <fieldset>
-                {{ form.user|add_class:'input'|attr:"placeholder: Enter Discount Amount" }}
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">All User List</button>
+                    <div id="myDropdown" class="dropdown-content">
+                  {{ form.user|add_class:'input3' }}
+                    </div>
+                  </div>
             </fieldset>
 
             <fieldset>
@@ -43,6 +96,11 @@
 
         
       </div>
-
+      <script>
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        </script>
 </body>
 </html>
