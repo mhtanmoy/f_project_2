@@ -56,8 +56,9 @@
                       <th>vehicle reg no</th>
                       <th>vehicle brand</th>
                       <th>vehicle model</th>
-                      <th>insurance validity</th>
                       <th>insurance type</th>
+                      <th>insurance validity</th>
+                      
                       <th>registration year</th>
                       <th>driven(km)</th>
                       <th>status</th>
@@ -79,10 +80,9 @@
               <td>{{ i.vehicle_registration_no }}</td> 
               <td>{{ i.vehicle_brand }}</td> 
               <td>{{ i.vehicle_model }}</td> 
+              <td>{{ i.insurance_type }}</td> 
               <td>{{ i.insurance_validity }}</td> 
-              <td>    {% for j in i.insurance_type %}
-                {{  Insurance  }}
-                {% endfor %}</td> 
+              
               <td>{{ i.registration_year }}</td> 
               <td>{{ i.km_driven }}</td> 
               <td>{{ i.status }}</td> 

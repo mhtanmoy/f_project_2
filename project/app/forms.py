@@ -25,7 +25,7 @@ class DriverFrom(ModelForm):
 	vehicle_brand = ModelChoiceField(queryset=Brand.objects.all())
 	vehicle_model = ModelChoiceField(queryset=BrandModel.objects.all())
 
-	insurance_type = ModelMultipleChoiceField(queryset=Insurance.objects.all())
+	insurance_type = ModelChoiceField(queryset=Insurance.objects.all())
 	class Meta:
 		model = Driver
 		fields = '__all__'
@@ -61,6 +61,7 @@ class NotificationFrom(ModelForm):
 
 
 class CouponsFrom(ModelForm):
+	user = ModelMultipleChoiceField(queryset=CustomerUser.objects.all())
 	class Meta:
 		model = Coupons
 		fields = '__all__'

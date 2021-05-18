@@ -19,6 +19,11 @@
             <fieldset>
                 {{ form.code|attr:"placeholder: Enter Coupon code" }}
             </fieldset>
+
+            <fieldset>
+                {{ form.user|add_class:'input'|attr:"placeholder: Enter Discount Amount" }}
+            </fieldset>
+
             <fieldset>
                 {{ form.amount|add_class:'input'|attr:"placeholder: Enter Discount Amount" }}
             </fieldset>

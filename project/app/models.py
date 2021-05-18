@@ -31,8 +31,6 @@ class Driver(models.Model):
     def __str__(self):
         return self.driver_name
 
-    def insurance(self):
-        return 2
 
 class CustomerUser(models.Model):
     user_name = models.CharField(max_length=150)
@@ -153,7 +151,9 @@ class Coupons(models.Model):
     amount=models.PositiveIntegerField() 
     valid_from=models.DateField(default=now)
     valid_up_to=models.DateField(default=now)
+    user=models.ManyToManyField(CustomerUser)
 
     def __str__(self):
         return self.coupon
         
+

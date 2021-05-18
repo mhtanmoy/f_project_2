@@ -30,6 +30,7 @@
                 <thead>
                     <tr>
                       <th>Code</th>
+                      <th>user/'s</th>
                       <th>Discount Amount</th>
                       <th>Valid From</th>
                       <th>Valid up to</th>
@@ -41,6 +42,12 @@
               {% for i in coup %}
             <tr>
               <td>{{ i.code }}</td> 
+
+              <td>{% for j in i.user.all %}
+                ■ {{ j }} <br>
+                {% endfor %}
+              </td>
+
               <td>{{ i.amount }}</td> 
               <td>{{ i.valid_from }}</td> 
               <td>{{ i.valid_up_to }}</td> 

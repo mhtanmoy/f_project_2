@@ -331,6 +331,7 @@ def createcoupons(request):
     form = CouponsFrom()
     if request.method == 'POST':
         form = CouponsFrom(request.POST)
+        
         if form.is_valid():
             form.save()
             return redirect('coupons')
