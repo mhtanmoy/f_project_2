@@ -328,6 +328,9 @@ def createdriver(request):
 @login_required
 @manager_only
 def createcoupons(request):
+    temp=CustomerUser.objects.all()
+    form2= OrderFilter2(request.GET, queryset=temp)
+    customerusers = form2.qs
     form = CouponsFrom()
     if request.method == 'POST':
         form = CouponsFrom(request.POST)
@@ -335,7 +338,7 @@ def createcoupons(request):
         if form.is_valid():
             form.save()
             return redirect('coupons')
-    return render(request,'app/createcoupons.html', {'form':form})
+    return render(request,'app/createcoupons.html', {'form':form,'form2':form2,'customerusers':customerusers})
 
 
 
