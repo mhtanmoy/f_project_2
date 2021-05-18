@@ -31,6 +31,9 @@ class Driver(models.Model):
     def __str__(self):
         return self.driver_name
 
+    def insurance(self):
+        return 2
+
 class CustomerUser(models.Model):
     user_name = models.CharField(max_length=150)
     mobile_no = models.CharField(max_length=25)
@@ -39,8 +42,8 @@ class CustomerUser(models.Model):
     #User_Id = models.CharField(max_length=10,unique=True)
 
     def User_Id(self):
-        temp= self.id*3
-        return f'{self.id}{temp}'
+        
+        return f'{self.id}'
 
     def __str__(self):
         return self.user_name

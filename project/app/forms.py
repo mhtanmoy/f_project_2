@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from django.forms.models import ModelMultipleChoiceField
 from .models import *
 from django.forms import ModelChoiceField
 from django.utils.crypto import get_random_string
@@ -23,7 +24,8 @@ class AdminForm(ModelForm):
 class DriverFrom(ModelForm):
 	vehicle_brand = ModelChoiceField(queryset=Brand.objects.all())
 	vehicle_model = ModelChoiceField(queryset=BrandModel.objects.all())
-	insurance_type = ModelChoiceField(queryset=Insurance.objects.all())
+
+	insurance_type = ModelMultipleChoiceField(queryset=Insurance.objects.all())
 	class Meta:
 		model = Driver
 		fields = '__all__'

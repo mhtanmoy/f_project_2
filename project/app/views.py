@@ -107,12 +107,15 @@ def bookingdetails(request):
 @login_required
 @manager_only
 def customeruser(request):
-    if 'q' in request.GET:
-        q=request.GET['q']
-        customerusers=CustomerUser.objects.filter(user_name__icontains=q)
-    else:
-        customerusers=CustomerUser.objects.all()
-    return render(request,'app/customeruser.html' , {'customerusers':customerusers})
+    temp=CustomerUser.objects.all()
+    form2= OrderFilter2(request.GET, queryset=temp)
+    customerusers = form2.qs
+
+    return render(request,'app/customeruser.html' , {'customerusers':customerusers,'form2':form2})
+
+
+
+    
 
 @login_required
 @manager_only
@@ -217,7 +220,7 @@ def editdriver(request, pk):
 @login_required
 @manager_only
 def edituser(request, pk):
-    customeruser = CustomerUser.objects.get(User_Id=pk)
+    customeruser = CustomerUser.objects.get(id=pk)
     form = CustomerUserFrom(instance=customeruser)
     if request.method == 'POST':
         form = CustomerUserFrom(request.POST, instance=customeruser)
@@ -292,7 +295,7 @@ def deletebookingdetails(request,pk):
 @login_required
 @manager_only
 def deletecustomer(request,pk):
-    obj=get_object_or_404(CustomerUser,User_Id=pk)
+    obj=get_object_or_404(CustomerUser,id=pk)
     if request.method =='GET':
         obj.delete()
         return redirect('customeruser')

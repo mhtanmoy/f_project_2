@@ -80,7 +80,9 @@
               <td>{{ i.vehicle_brand }}</td> 
               <td>{{ i.vehicle_model }}</td> 
               <td>{{ i.insurance_validity }}</td> 
-              <td>{{ i.insurance_type }}</td> 
+              <td>    {% for j in i.insurance_type %}
+                {{  Insurance  }}
+                {% endfor %}</td> 
               <td>{{ i.registration_year }}</td> 
               <td>{{ i.km_driven }}</td> 
               <td>{{ i.status }}</td> 
