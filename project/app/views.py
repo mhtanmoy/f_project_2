@@ -61,7 +61,7 @@ def signupuser(request):
 @login_required
 def home(request):
     driver=Driver.objects.all().filter(status='UNDER VARIFICATION').count()
-    booking_req= BookingDetails.objects.all().filter(assign_driver=None).count()
+    booking_req= BookingDetails.objects.all().filter(assign_driver=None).filter(reject=False).count()
     return render(request,'app/home.html',{'driver':driver,'booking_req':booking_req})
 
 
@@ -92,10 +92,21 @@ def vehicle(request):
 def bookinghistory(request):
     if 'q' in request.GET:
         q=request.GET['q']
+        bookingdetailss=BookingDetails.objects.filter(booking_id__icontains=q)
+    else:
+        bookingdetailss=BookingDetails.objects.all()
+    return render(request,'app/bookinghistory.html' , {'bookingdetailss':bookingdetailss})
+
+
+@login_required
+@manager_only
+def aftercompleted(request):
+    if 'q' in request.GET:
+        q=request.GET['q']
         bookinghistorys=BookingHistory.objects.filter(trip_type__icontains=q)
     else:
         bookinghistorys=BookingHistory.objects.all()
-    return render(request,'app/bookinghistory.html' , {'bookinghistorys':bookinghistorys})
+    return render(request,'app/aftercompleted.html' , {'bookinghistorys':bookinghistorys})
 
 
 @login_required
@@ -174,7 +185,7 @@ def drivers_verify(request):
 @login_required
 @manager_only
 def booking_request(request):
-    bookingdetailss=BookingDetails.objects.all().filter(assign_driver=None)
+    bookingdetailss=BookingDetails.objects.all().filter(assign_driver=None).filter(reject=False)
     return render(request,'app/booking_request.html' , {'bookingdetailss':bookingdetailss})
 
 
@@ -246,6 +257,22 @@ def assigndriver(request, pk):
             return redirect('booking_request')
     return render(request,'app/assign_driver.html', {'form':form,'form2': form2,'drivers': drivers})
   
+
+
+@login_required
+@manager_only
+def rejectdriver(request, pk):
+    booking = BookingDetails.objects.get(booking_id=pk)
+    form = RejectDriverForm(instance=booking)
+    if request.method == 'POST':
+        form = RejectDriverForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('booking_request')
+    return render(request,'app/rejectdriver.html', {'form':form})
+  
+
+
 
 ##########DELETE############
 

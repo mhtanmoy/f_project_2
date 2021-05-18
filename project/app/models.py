@@ -22,7 +22,7 @@ class Driver(models.Model):
     registration_year=models.CharField(max_length=10, null=True)
     km_driven=models.CharField(max_length=50, null=True)
     choice=(('UNDER VARIFICATION','UNDER VARIFICATION'),('ACTIVE','ACTIVE'),('OFFLINE','OFFLINE'),('ON A RIDE','ON A RIDE'))
-    status=models.CharField(max_length=50, choices=choice, default='pending', null=True) 
+    status=models.CharField(max_length=50, choices=choice, default='UNDER VARIFICATION', null=True) 
 
     def unid(self):
         return f'{self.driver_id}'
@@ -111,6 +111,8 @@ class Admin(models.Model):
 
 class Frompoint(models.Model):
     area= models.CharField(max_length=30)
+    def __str__(self):
+        return self.area
 
 class BookingDetails(models.Model):
     booking_id = models.AutoField(primary_key=True)
@@ -133,6 +135,7 @@ class BookingDetails(models.Model):
     cash_drop_point=models.CharField(max_length=150,null=True,blank=True) 
     transaction_no=models.CharField(max_length=100,null=True,blank=True) 
     assign_driver=models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True)
+    reject= models.BooleanField(default=False)
 
     def __str__(self):
         return self.trip_type
@@ -165,3 +168,5 @@ class Contact(models.Model):
     phone=models.CharField(max_length=30, null=True, blank=True)
     email=models.EmailField(max_length=60, null=True, blank=True)
 
+    def __str__(self):
+        return self.email

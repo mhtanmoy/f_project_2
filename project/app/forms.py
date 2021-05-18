@@ -72,6 +72,11 @@ class AssignDriverForm(ModelForm):
 		model =BookingDetails
 		fields = ['assign_driver']
 
+class RejectDriverForm(ModelForm):
+	class Meta:
+		model =BookingDetails
+		fields = ['reject']
+
 class BrandFrom(ModelForm):
 	class Meta:
 		model = Brand

@@ -42,10 +42,12 @@ urlpatterns = [
     path('customer/<int:pk>/delete', views.deletecustomer, name='deletecustomer'),
     path('driversverify', views.drivers_verify, name='drivers_verify'),
     path('bookingrequest', views.booking_request, name='booking_request'), 
-    path('assigndriver/<int:pk>', views.assigndriver, name='assigndriver'),   
+    path('assigndriver/<int:pk>', views.assigndriver, name='assigndriver'),
+    path('rejectdriver/<int:pk>', views.rejectdriver, name='rejectdriver'),   
     path('profile', views.profile, name='profile'),
     path('today', views.today, name='today'),
     path('week', views.week, name='week'), 
-    path('month', views.month, name='month'), 
+    path('month', views.month, name='month'),
+    path('aftercompleted', views.aftercompleted, name='aftercompleted') 
 
 ]

@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
   <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/416491/timeline.css">
 
+  <link rel="icon" type="image/png"  href="{% static 'images/logo/LOGO SAFAR.png' %}">
+
   <title>Safar Admin Panel</title>
 </head>
 <body>
@@ -27,7 +29,9 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-        <a class="navbar-brand" href="/"><div id="h2">SAFAR ADMIN PANEL</div></a>
+        <a class="navbar-brand" href="/"><div id="h2"> 
+          <img src="{% static 'images/logo/LOGO SAFAR.png' %}" width="32">
+          SAFAR ADMIN PANEL</div></a>
       </div>
   
       <ul class="nav navbar-top-links navbar-right">
@@ -87,7 +91,7 @@
                   <a href="{% url 'vehicle' %}" class="kk">Vehicles</a>
                 </li>
                 <li>
-                  <a href="{% url 'bookinghistory' %}" class="kk">Booking History</a>
+                  <a href="{% url 'aftercompleted' %}" class="kk">Booking History</a>
                 </li>
                 <li>
                   <a href="/driversverify" class="kk">Driver's Account Verification</a>
@@ -140,6 +144,12 @@
             <li>
               <a href="/createcoupons" class="kk"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> 
                 <strong>Add coupons</strong>
+            </a>
+            </li>
+
+            <li>
+              <a href="/" class="kk"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> 
+                <strong>Edit Contact</strong>
             </a>
             </li>
   
