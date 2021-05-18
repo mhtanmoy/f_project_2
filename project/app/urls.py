@@ -23,6 +23,9 @@ urlpatterns = [
     path('coupons', views.coupons, name='coupons'),
     path('createcoupons', views.createcoupons, name='createcoupons'), 
 
+    path('editcontact', views.editcontact, name='editcontact'), 
+    path('createfrompoint', views.createfrompoint, name='createfrompoint'), 
+
     path('brand', views.brand, name='brand'),
     path('createbrand', views.createbrand, name='createbrand'), 
 

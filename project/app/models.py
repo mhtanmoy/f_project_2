@@ -109,10 +109,14 @@ class Admin(models.Model):
         return self.name  
 
 
+class Frompoint(models.Model):
+    area= models.CharField(max_length=30)
+
 class BookingDetails(models.Model):
     booking_id = models.AutoField(primary_key=True)
     choice=(('Round trip','Round trip'),('One way','One way'),('Local','Local'))
     trip_type=models.CharField(max_length=50, choices=choice, default='', null=True) 
+    area=models.ForeignKey(Frompoint,on_delete=models.CASCADE)
     pickup_point=models.CharField(max_length=150)
     Pickup_date_time=models.DateTimeField()
     drop_point=models.CharField(max_length=150)
@@ -156,4 +160,8 @@ class Coupons(models.Model):
     def __str__(self):
         return self.coupon
         
+
+class Contact(models.Model):
+    phone=models.CharField(max_length=30, null=True, blank=True)
+    email=models.EmailField(max_length=60, null=True, blank=True)
 

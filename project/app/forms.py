@@ -86,3 +86,13 @@ class BrandModelFrom(ModelForm):
 	class Meta:
 		model = BrandModel
 		fields = '__all__'
+
+class FrompointForm(ModelForm):
+	class Meta:
+		model = Frompoint
+		fields = ['area']
+
+class ContactEditForm(ModelForm):
+	class Meta:
+		model = Contact
+		fields = ['phone','email']

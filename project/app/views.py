@@ -310,6 +310,19 @@ def deletenotification(request,pk):
         return redirect('notification')
 
 
+@login_required
+@manager_only
+def editcontact(request):
+    temp = Contact.objects.get(id=1)
+    form = ContactEditForm(instance=temp)
+    if request.method == 'POST':
+        form = ContactEditForm(request.POST, instance=temp)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render(request,'app/editcontact.html', {'form':form})
+
+
 
 #######CREATE###########
 
@@ -407,5 +420,16 @@ def createinsurance(request):
     return render(request,'app/createinsurance.html', {'form':form})
 
 
+@login_required
+@manager_only
+def createfrompoint(request):
+    form = FrompointForm()
+    form2=Frompoint.objects.all()
+    if request.method == 'POST':
+        form = FrompointForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('createfrompoint')
+    return render(request,'app/createfrompoint.html', {'form':form,'form2':form2})
 
 
