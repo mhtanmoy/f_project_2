@@ -44,7 +44,7 @@ class NotificationSerializer(serializers.ModelSerializer):
         fields=['id','title','date','description','type']
 
 class CouponsSerializer(serializers.ModelSerializer):
-    user = CustomerUserSerializer(read_only=True)
+    user = CustomerUserSerializer(read_only=True, many=True)
     class Meta:
         model=Coupons
         fields=['id','code','amount','valid_from','valid_up_to','user']
