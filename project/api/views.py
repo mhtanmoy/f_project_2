@@ -64,3 +64,11 @@ class CouponsList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     def perform_create(self, serializer):
         serializer.save()
+
+
+class contactList(generics.ListCreateAPIView):
+    queryset=Contact.objects.all()
+    serializer_class=ContactSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def perform_create(self, serializer):
+        serializer.save()

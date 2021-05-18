@@ -96,8 +96,6 @@
                   <th>Mobile number</th>
                   <th>Wallet amount</th>
                   <th>Email</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
                 </tr>
               </thead>
             </div>
@@ -109,8 +107,6 @@
           <td>{{ i.mobile_no }}</td> 
           <td>{{ i.wallet_amount }}</td>  
           <td>{{ i.email_id }}</td>
-          <td><a href="{% url 'edituser' i.id %}">edit</td>
-            <td> <a href="{% url 'deletecustomer' i.id %}">delete</a></td>
 
         </tr>
           {% endfor %}
