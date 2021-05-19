@@ -128,7 +128,7 @@ class BookingDetails(models.Model):
     user_id = models.CharField(max_length=100)
     mobile_no=models.CharField(max_length=25)
     approx_km_travelling=models.CharField(max_length=50)
-    coupon=models.CharField(max_length=150)
+    coupon=models.CharField(max_length=150,null=True,blank=True)
     coupon_discount_amount =models.CharField(max_length=50)
     fare=models.CharField(max_length=50)
     advance_payment_medium=models.CharField(max_length=50)

@@ -68,6 +68,7 @@ def home(request):
 #######ALL THE PAGE FUNCTIONALITY########
 
 @login_required
+@manager_only
 def driver(request):
     if 'q' in request.GET:
         q=request.GET['q']
@@ -193,11 +194,15 @@ def profile(request):
     return render(request, 'app/profile.html')
 
 
+@login_required
+@manager_only
 def today(request):
     date=datetime.date.today()
     bookingdetailss=BookingDetails.objects.all().filter(drop_date=date)
     return render(request,'app/today.html' , {'bookingdetailss':bookingdetailss})
 
+@login_required
+@manager_only
 def week(request):
     date=datetime.date.today()
     start_week = date - datetime.timedelta(date.weekday())
@@ -205,6 +210,8 @@ def week(request):
     bookingdetailss=BookingDetails.objects.all().filter(drop_date__range=[start_week, end_week])
     return render(request,'app/week.html' , {'bookingdetailss':bookingdetailss})
 
+@login_required
+@manager_only
 def month(request):
     date=datetime.date.today()
     start_week = date - datetime.timedelta(date.weekday())
@@ -255,7 +262,14 @@ def assigndriver(request, pk):
         if form.is_valid():
             form.save()
             return redirect('booking_request')
-    return render(request,'app/assign_driver.html', {'form':form,'form2': form2,'drivers': drivers})
+    return render(request,'app/assign_driver.html', {'form':form,'form2': form2,'drivers': drivers,'pk':pk})
+
+def assigndriver2(request, pk, pk2):
+    booking = BookingDetails.objects.get(booking_id=pk)
+    driver= Driver.objects.get(driver_id=pk2)
+    booking.assign_driver = driver
+    booking.save()
+    return redirect('booking_request')
   
 
 
